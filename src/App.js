@@ -2,6 +2,32 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL, API_KEY } from './Constants/index'
 import "./App.css";
+import styled from "styled-components";
+
+
+const StyledApp = styled.div`
+  font-family: 'garamond';
+  width: 100%;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1, h3, .cr, .title {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .cr:hover {
+    color: blue;
+  }
+
+  .expl:hover {
+    background-color: coral;
+    color: white;
+  }
+  
+`
 
 function App() {
   const [newData, setNewData] = useState([]);
@@ -25,13 +51,14 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <h2>{newData.title}</h2>
-        <h3>{newData.date}</h3>
-        <p>{newData.explanation}</p>
+      <StyledApp>
+        <h1>NASA Photo Of The Day</h1>
+        <h2 className='title'>{newData.title}</h2>
+        <h3>Date: {newData.date}</h3>
+        <p className='expl'>Explanation: {newData.explanation}</p>
         <img src={newData.url} alt='Stars Everywhere'/>
-        <p>{newData.copyright}</p>
-      </div>
+        <p className='cr'>Copyright By: {newData.copyright}</p>
+      </StyledApp>
     </div>
   );
 }
